@@ -7,7 +7,7 @@ const Search = () => {
     return Axios.get();
   });
   return (
-    <div className="mt-5 p-2 w-96 bg-slate-800 rounded-md">
+    <div className="mt-10 m-auto p-2 w-96 bg-slate-800 rounded-md">
       <form
         className="flex justify-between w-full gap-1"
         onSubmit={(e) => e.preventDefault()}
