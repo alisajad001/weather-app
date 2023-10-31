@@ -1,11 +1,29 @@
-import { Axios } from "axios";
-import React from "react";
+import Axios from "axios";
+import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 
-const Search = () => {
-  const { data } = useQuery(["weather"], () => {
-    return Axios.get();
+const URL = "https://api.weatherapi.com/v1/current.json";
+const API_KEY = "f0ce3f6377524cfa8a0172632232910";
+
+const Search = ({ setData }) => {
+  const [query, setQuery] = useState("London");
+
+  // Make a request using Axios
+  const { data, refetch } = useQuery(["weather"], () => {
+    return Axios.get(`${URL}?key=${API_KEY}&q=${query}`).then(
+      (res) => res.data
+    );
   });
+
+  useEffect(() => {
+    setData(data);
+  }, [data]);
+
+  const handleClick = () => {
+    refetch();
+    setQuery("");
+  };
+
   return (
     <div className="mt-10 m-auto p-2 w-96 bg-slate-800 rounded-md">
       <form
@@ -14,10 +32,12 @@ const Search = () => {
       >
         <input
           type="text"
+          value={query}
           placeholder="location..."
           className="w-full rounded-md p-3 outline-none text-white bg-slate-700 border-slate-600 border"
+          onChange={(e) => setQuery(e.target.value)}
         />
-        <button>
+        <button onClick={handleClick}>
           <span className="material-symbols-outlined text-slate-200 bg-cyan-500 p-3 rounded-md">
             search
           </span>
