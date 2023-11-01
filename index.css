@@ -14,5 +14,4 @@ body {
   backdrop-filter: blur(50px);
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
 }

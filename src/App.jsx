@@ -4,7 +4,13 @@ import Search from "./components/Search";
 import Weather from "./components/Weather";
 
 const App = () => {
-  const client = new QueryClient();
+  const client = new QueryClient({
+    defaultOptions: {
+      queries: {
+        refetchOnMount: false,
+      },
+    },
+  });
   const [data, setData] = useState();
   return (
     <div>

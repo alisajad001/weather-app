@@ -6,7 +6,7 @@ const URL = "https://api.weatherapi.com/v1/current.json";
 const API_KEY = "f0ce3f6377524cfa8a0172632232910";
 
 const Search = ({ setData }) => {
-  const [query, setQuery] = useState("London");
+  const [query, setQuery] = useState("kabul");
 
   // Make a request using Axios
   const { data, refetch } = useQuery(["weather"], () => {
@@ -25,7 +25,7 @@ const Search = ({ setData }) => {
   };
 
   return (
-    <div className="mt-10 m-auto p-2 w-96 bg-slate-800 rounded-md">
+    <div className="mt-10 m-auto p-2 w-80 sm:w-[30rem] bg-slate-800 rounded-md">
       <form
         className="flex justify-between w-full gap-1"
         onSubmit={(e) => e.preventDefault()}
